@@ -1,0 +1,15 @@
+%h2 Movies directed by the director '#{@cur_movie.director}'
+ %table
+  %thead
+    %tr
+      %th Title
+      %th Rating
+      %th Director
+      %th Release Date
+  %tbody
+    - @movies.each do |movie|
+      %tr
+        %td= movie.title 
+        %td= movie.rating
+        %td= movie.director
+        %td= movie.release_date
