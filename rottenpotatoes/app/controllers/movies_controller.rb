@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   
   def movie_params
-    params.require(:movie).permit(:title, :director, :rating, :description, :release_date)
+    params.require(:movie).permit(:title, :rating, :description, :release_date, :director)
   end
 
   def show
@@ -65,10 +65,9 @@ class MoviesController < ApplicationController
     @cur_movie = Movie.find(params[:id])
     @movies = Movie.movies_by_director(@movie)
     if @movies == nil
-      flash[:alert] = "Sorry, we do not have a the director of #{@cur_movie.title}' in record."
+      flash[:alert] = "Sorry, director info of #{@cur_movie.title}' not found."
       redirect_to movies_path, alert: "'#{@cur_movie.title}' has no director info"
     end
   end
-
 
 end
