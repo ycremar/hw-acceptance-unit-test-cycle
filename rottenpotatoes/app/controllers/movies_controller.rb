@@ -63,7 +63,7 @@ class MoviesController < ApplicationController
   
   def movies_by_director
     @cur_movie = Movie.find(params[:id])
-    @movies = Movie.similar_movies_of_director(@movie)
+    @movies = Movie.movies_by_director(@movie)
     if @movies == nil
       flash[:alert] = "Sorry, we do not have a the director of #{@cur_movie.title}' in record."
       redirect_to movies_path, alert: "'#{@cur_movie.title}' has no director info"
