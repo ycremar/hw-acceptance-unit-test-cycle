@@ -4,7 +4,7 @@ class Movie < ActiveRecord::Base
   end
   
   def self.movies_by_director(movie)
-    return nil if movie.director.blank?
-    Movie.all.where(director: movie.director)
+    return nil if movie.director.blank? || movie.director.nil?
+    Movie.where(director: movie.director)
   end
 end

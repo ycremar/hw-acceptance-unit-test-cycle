@@ -21,6 +21,8 @@ module NavigationHelpers
     when /^the details page for "(.*)"$/
       movie_path(Movie.find_by_title($1))
       
+    when /^the similar movies page for "(.*)"$/i  # I am on the similar movies page for "Star Wars"
+      movies_by_director_path(Movie.find_by_title($1)) 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
