@@ -19,7 +19,26 @@ describe MoviesController, type: 'controller' do
           expect(Movie.where(:director => @movie_2.director).size).to eq(2)
         end
       end
+      describe "create" do
+        let(:params) {{:title => "Alien"}}
+        let(:movie) {double('movie', params)}
       
+        it 'calls the create method to create a new movie' do
+          expect(Movie).to receive(:create!).with(params).and_return(movie)
+          post :create, {movie: params}  
+        end
+      end
+      
+      describe "destroy" do
+        let(:movie) {double('movie',:title => 'Shrek')}
+        let(:id) {'200'}
+        
+        it 'calls the find method to retrieve a movie' do
+          expect(Movie).to receive(:find).with(id).and_return(movie)
+          allow(movie).to receive(:destroy)
+          delete :destroy, {:id => id}
+        end
+      end
     end
   end
   
